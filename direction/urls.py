@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.conf.urls import url
-import views
+from direction import views
 urlpatterns = [
 	# post 请求控制方向盘
 	url(r'^autodrive/direction/?$', views.CarMoveView.as_view(), name='direction'),
