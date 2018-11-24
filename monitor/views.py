@@ -7,7 +7,7 @@ from constants import error_constants
 from api_tools import api_tools
 from PIL import Image
 from constants import constants
-from models import PersonFace, CarDetection, Transaction, Obstacle
+from monitor.models import PersonFace, CarDetection, Transaction, Obstacle
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from serializer.serializers import PersonFaceSerializer, CarDetectionSerializer, TransactionSerializer
 import logging
