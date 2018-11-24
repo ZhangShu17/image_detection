@@ -95,7 +95,7 @@ DATABASES = {
         # 'USER': 'zhangshu',
         # server
         'USER': 'root',
-        'PASSWORD': 'zhangshu_17',
+        'PASSWORD': 'shushuzhang_17',
         'HOST': 'localhost',
         'PORT': '3306',
         'AUTOCOMMIT': True,
