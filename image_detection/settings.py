@@ -86,11 +86,15 @@ WSGI_APPLICATION = 'image_detection.wsgi.application'
 # }
 
 # MySQL configuration
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'img_detection',
-        'USER': 'zhangshu',
+        # local
+        # 'USER': 'zhangshu',
+        # server
+        'USER': 'root',
         'PASSWORD': 'zhangshu_17',
         'HOST': 'localhost',
         'PORT': '3306',

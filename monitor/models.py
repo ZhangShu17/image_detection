@@ -25,7 +25,7 @@ class Car(models.Model):
 # 相机
 class Camera(models.Model):
     camera_sign = models.CharField(max_length=20, verbose_name=u'相机编号')
-    car = models.ForeignKey(to=Car, related_name='car_camera', verbose_name=u'所属车辆')
+    car = models.ForeignKey(to=Car, related_name='car_camera', on_delete=models.CASCADE,verbose_name=u'所属车辆')
 
     class Meta:
         unique_together = (('camera_sign', 'car'),)
@@ -33,7 +33,7 @@ class Camera(models.Model):
 
 # 车辆运行轨迹
 class Transaction(models.Model):
-    car = models.ForeignKey(to=Car, related_name='car_trans', verbose_name=u'所属车辆')
+    car = models.ForeignKey(to=Car, related_name='car_trans', on_delete=models.CASCADE, verbose_name=u'所属车辆')
     create_at = models.DateTimeField(auto_now_add=True, verbose_name=u'时间')
     longitude = models.CharField(max_length=15, verbose_name=u'经度')
     latitude = models.CharField(max_length=15, verbose_name=u'纬度')
@@ -51,12 +51,12 @@ class Obstacle(models.Model):
     height = models.FloatField(max_length=5, null=True, verbose_name=u'高度')
     distance = models.FloatField(max_length=5, null=True, verbose_name=u'距离')
     angle = models.FloatField(max_length=5, null=True, verbose_name=u'角度')
-    transaction = models.ForeignKey(to=Transaction, related_name='trans_Obstacle')
+    transaction = models.ForeignKey(to=Transaction, on_delete=models.CASCADE, related_name='trans_Obstacle')
 
 
 # 人脸图片
 class PersonFace(models.Model):
-    camera = models.ForeignKey(to=Camera, related_name=u'camera_person_face')
+    camera = models.ForeignKey(to=Camera, on_delete=models.CASCADE, related_name=u'camera_person_face')
     link_url = models.CharField(max_length=100, verbose_name=u'链接地址')
     create_at = models.DateTimeField(auto_now_add=True, verbose_name=u'时间')
     gender = models.CharField(max_length=1, null=True, verbose_name=u'性别')
@@ -70,7 +70,7 @@ class PersonFace(models.Model):
 
 # 车辆图片
 class CarDetection(models.Model):
-    camera = models.ForeignKey(to=Camera, related_name=u'camera_car_detec')
+    camera = models.ForeignKey(to=Camera, on_delete=models.CASCADE, related_name=u'camera_car_detec')
     link_url = models.CharField(max_length=100, verbose_name=u'链接地址')
     create_at = models.DateTimeField(auto_now_add=True, verbose_name=u'时间')
     length = models.FloatField(max_length=5, null=True, verbose_name=u'长度')
