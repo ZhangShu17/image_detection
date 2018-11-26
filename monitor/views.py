@@ -170,6 +170,32 @@ class CarDetectionView(APIView):
         response_data['data']['pageCount'] = page_count
         return Response(response_data, status.HTTP_200_OK)
 
+		
+class ObstacleView(APIView):
+    def post(self, request):
+	response_data = {'retCode': error_constants.ERR_STATUS_SUCCESS[0],
+                         'retMsg': error_constants.ERR_STATUS_SUCCESS[1]}
+	    try:
+		    length = float(request.POST.get('length'))
+			width = float(request.POST.get('width'))
+			heigth = float(request.POST.get('heigth'))
+			distance = float(request.POST.get('distance'))
+			angle = float(request.POST.get('angle'))
+		except Exception as ex:
+		    logger.error(ex)
+			return api_tools.generate_error_response(error_constants.ERR_INVALID_PARAMETER,
+                                                     status.HTTP_400_BAD_REQUEST)
+		cur_trans_list = Transaction.objects.order_by('-create_at')
+		if cur_trans_list.exists():
+		    try:
+			    with transaction.atomic():
+				    cur_obstacle = Obstacle(length=length, width=width, height=height, distance=distance, angle=angle, transaction_id=cur_trans_list.first().id)
+			except Exception as ex:
+			    logger.error(ex)
+            return api_tools.generate_error_response(error_constants.ERR_SAVE_MODEL,
+                                                         status.HTTP_400_BAD_REQUEST)
+		return Response(request_data, status,HTTP_200_OK)
+			
 
 class TransactionView(APIView):
     def post(self, request):

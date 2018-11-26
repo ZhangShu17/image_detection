@@ -28,7 +28,7 @@ import json
 # print(type(json_data))
 
 # 车辆轨迹  POST请求
-url = 'http://127.0.0.1:8000/transaction/'
+url = 'http://132.232.84.235:8000/transaction/'
 data = {
     'longitude': '30.809',
     'latitude': '90.0987',
@@ -54,12 +54,31 @@ def post_transaction(url, data):
 
     json_data = json.loads(r.text)
     return json_data['retCode']
-
-
-
-
+	
+	
 # 这个是get请求请求
 r = requests.get(url=url)
 print(r.text)
 json_data = json.loads(r.text)
 print(json_data)
+
+
+	
+	
+	
+url = 'http://132.232.84.235:8000/obstacle/'
+data={
+    'length': 1.2,
+	'width': 0.7,
+	'height': 0.3,
+	'distance': 0.2,
+	'angle': 0.5
+}
+def post_obstacle(url, data):
+    r = requests.post(url=url, data=data)
+	json_data = json.loads(r.text)
+	return json_data['retCode']
+    
+
+
+
