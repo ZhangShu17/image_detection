@@ -92,9 +92,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'img_detection',
         # local
-        'USER': 'zhangshu',
+        # 'USER': 'zhangshu',
         # server
-        # 'USER': 'root',
+        'USER': 'root',
         'PASSWORD': 'shushuzhang_17',
         'HOST': 'localhost',
         # remote server
