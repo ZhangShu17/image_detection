@@ -202,7 +202,6 @@ class TransactionView(APIView):
     def post(self, request):
         response_data = {'retCode': error_constants.ERR_STATUS_SUCCESS[0],
                          'retMsg': error_constants.ERR_STATUS_SUCCESS[1]}
-        print('request_data={}'.format(dict(eval(request.data))))
         try:
             request_data = dict(eval(request.data))
             longitude = str(request_data.get('longitude', ''))

@@ -10,4 +10,6 @@ urlpatterns = [
 	url(r'^autodrive/current_command/?$', views.CommandExecuView.as_view(), name='current_command'),
 	# 手动自动切换指令
 	url(r'^autodrive/control_state/?$', views.ControlStateView.as_view(), name='control_state'),
+	# 服务端数据库重置
+	url(r'^autodrive/reset/?$', views.ResetView.as_view(), name='reset'),
 ]

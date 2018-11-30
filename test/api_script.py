@@ -28,7 +28,7 @@ import json
 # print(type(json_data))
 
 # 车辆轨迹  POST请求
-url = 'http://132.232.84.235:8000/transaction/'
+url = 'http://127.0.0.1:8000/transaction/'
 data = {
     'longitude': '30.809',
     'latitude': '90.0987',
@@ -40,11 +40,11 @@ data = {
 n=5
 for i in range(n):
     obstac = {
-        'length': 0.6, # 表示障碍物长度
-        'width': 0.3, # 表示障碍物宽度
-        'height': 0.2, # 表示障碍物高度
-        'distance': 1.4, # 表示距离车辆距离
-        'angle': 30.6# 表示距离车轴线角度   正负定义: 车尾-车头为基准，顺时针为正，逆时针为负， 角度-180---+180
+        'length': 0.6,  # 表示障碍物长度
+        'width': 0.3,  # 表示障碍物宽度
+        'height': 0.2,  # 表示障碍物高度
+        'distance': 1.4,  # 表示距离车辆距离
+        'angle': 30.6  # 表示距离车轴线角度   正负定义: 车尾-车头为基准，顺时针为正，逆时针为负， 角度-180---+180
     }
     data['obstacle'].append(obstac)
 
@@ -54,31 +54,41 @@ def post_transaction(url, data):
 
     json_data = json.loads(r.text)
     return json_data['retCode']
-	
-	
-# 这个是get请求请求
-r = requests.get(url=url)
-print(r.text)
-json_data = json.loads(r.text)
-print(json_data)
 
 
-	
-	
-	
-url = 'http://132.232.84.235:8000/obstacle/'
-data={
-    'length': 1.2,
-	'width': 0.7,
-	'height': 0.3,
-	'distance': 0.2,
-	'angle': 0.5
-}
+# # 这个是get请求请求
+# r = requests.get(url=url)
+# print(r.text)
+# json_data = json.loads(r.text)
+# print(json_data)
+
+
+# url = 'http://132.232.84.235:8000/obstacle/'
+# data = {
+#     'length': 1.2,
+#     'width': 0.7,
+#     'height': 0.3,
+#     'distance': 0.2,
+#     'angle': 0.5
+# }
+
+
 def post_obstacle(url, data):
     r = requests.post(url=url, data=data)
-	json_data = json.loads(r.text)
-	return json_data['retCode']
-    
+    json_data = json.loads(r.text)
+    return json_data['retCode']
 
 
+def post_control_command():
+    url = 'http://127.0.0.1:8000/autodrive/direction/'
+    data = {
+        'angle': 23,
+    }
+    r = requests.post(url=url, data=data)
+    json_data = json.loads(r.text)
+    print(json_data)
+    return json_data['retCode']
 
+
+result = post_transaction(url=url, data=data)
+print(result)

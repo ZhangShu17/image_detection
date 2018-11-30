@@ -242,3 +242,16 @@ class ControlStateView(APIView):
             return Response(response_data, status.HTTP_400_BAD_REQUEST)
         response_data['cur_control_state'] = cur_cont_stat
         return Response(response_data, status.HTTP_200_OK)
+
+
+# 客户端socket收不到服务端socket时，重置到默认状态
+class ResetView(APIView):
+    def post(self, request):
+        response_data = {
+            'retCode': 0,
+            'retMessage': u'成功',
+        }
+        Command.objects.delete()
+        ControlState.objects.update(control_status=True)
+        StopStatus.objects.update(stop_status=False)
+        return Response(response_data, status.HTTP_200_OK)
