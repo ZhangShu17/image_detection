@@ -28,7 +28,7 @@ import json
 # print(type(json_data))
 
 # 车辆轨迹  POST请求
-url = 'http://127.0.0.1:8000/transaction/'
+url = 'http://132.232.84.235:8000/transaction/'
 data = {
     'longitude': '30.809',
     'latitude': '90.0987',
@@ -80,7 +80,7 @@ def post_obstacle(url, data):
 
 
 def post_control_command():
-    url = 'http://127.0.0.1:8000/autodrive/direction/'
+    url = 'http://132.232.84.235:8000/autodrive/direction/'
     data = {
         'angle': 23,
     }
